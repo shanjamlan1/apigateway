@@ -28,6 +28,3 @@
         return response()->json(['error'=>$message,'Site' => 1,'code'=>$code],$code);
     }
 }
-
-
-?>

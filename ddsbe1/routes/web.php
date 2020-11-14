@@ -16,8 +16,8 @@ $router->get('/', function () use ($router) {
 });
 
 
-$router->get('/users','UserController@getUsers'); //get all users
-$router->post('/users', 'UserController@createUser');  // create new user record
-$router->get('/users/{id}', 'UserController@findUser'); // get user by id
+$router->get('/users','UserController@index'); //get all users
+$router->post('/users', 'UserController@addUser');  // create new user record
+$router->get('/users/{id}', 'UserController@showUser'); // get user by id
 $router->put('/users/{id}', 'UserController@updateUser'); // update user record
 $router->delete('/users/{id}', 'UserController@delete'); // delete record

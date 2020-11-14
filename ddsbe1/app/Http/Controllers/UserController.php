@@ -9,17 +9,17 @@ use App\Http\Controllers\Response;
 Class UserController extends Controller {
     use ApiResponser;
     private $request;
-    public function __construct(Request $request){
 
-    $this->request = $request;
+    public function __construct(Request $request){
+        $this->request = $request;
     }
 
-    public function getUsers(){
+    public function index(){
         $users =  User::all();
         return $this->successResponse($users);
     }
 
-    public function createUser(Request $request)
+    public function addUser(Request $request)
     {
         $rules = [
             'username' => 'required|max:50',
@@ -27,13 +27,11 @@ Class UserController extends Controller {
         ];
 
         $this->validate($request, $rules);
-
         $user = User::create($request->all());
-
         return $this->createSuccess($user);
     }
 
-    public function findUser($id)
+    public function showUser($id)
     {
         $user = User::findOrFail($id);
         return $this->successResponse($user);
@@ -66,5 +64,3 @@ Class UserController extends Controller {
         return $this->deleteSuccess($user);
     }
 }
-
-?>
