@@ -14,11 +14,20 @@ Class UserController extends Controller {
         $this->request = $request;
     }
 
+    //return all users
     public function index(){
         $users =  User::all();
         return $this->successResponse($users);
     }
 
+    //show user
+    public function showUser($id)
+    {
+        $user = User::findOrFail($id);
+        return $this->successResponse($user);
+    }
+
+    //create new users
     public function addUser(Request $request)
     {
         $rules = [
@@ -31,12 +40,7 @@ Class UserController extends Controller {
         return $this->createSuccess($user);
     }
 
-    public function showUser($id)
-    {
-        $user = User::findOrFail($id);
-        return $this->successResponse($user);
-    }
-
+    //update user
     public function updateUser(Request $request, $id)
     {
         $rules = [
@@ -58,7 +62,8 @@ Class UserController extends Controller {
         return $this->updateSuccess($user);
     }
 
-    public function delete($id) {
+    //delete user
+    public function deleteUser($id) {
         $user = User::findOrFail($id);
         $user->delete();
         return $this->deleteSuccess($user);
